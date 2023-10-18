@@ -22,6 +22,12 @@ password:{
 isAvatarImageSet:{
     type:Boolean,
     default:false,
-}
+},
+avatarImage: {
+    type: String,
+    default:"",
+},
+
 
 })
+module.exports= mongoose.model("Users", userSchema)
