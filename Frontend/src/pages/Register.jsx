@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import { registerRoute } from "../utils/APIRoutes";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 
@@ -15,7 +16,7 @@ export const Register = () => {
   });
 
 const toastOptions ={     
-position: "bottom-right",
+position: "bottom-right", 
 autoClose: 8000,
 pauseOnHover: true,
 draggable: true,
@@ -25,6 +26,7 @@ theme: "dark",
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(handleValidation()){
+      console.log("In validation" , registerRoute);
       const { email, username, password } = values;
       const { data } = await axios.post(registerRoute, {
         username,

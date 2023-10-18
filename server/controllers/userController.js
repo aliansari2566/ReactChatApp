@@ -1,5 +1,5 @@
 
- module.exports.register = async (req, res, next) => {
+ module.exports.register = (req, res, next) => {
     // try {
     //   const { username, password } = req.body;
     //   const user = await User.findOne({ username });
@@ -13,4 +13,7 @@
     // } catch (ex) {
     //   next(ex);
     // }
+    console.log(req.body)
+    // const {username , email , password} = req.body;
+    // const usernameCheck = await
   };
