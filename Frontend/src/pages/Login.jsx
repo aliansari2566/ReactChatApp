@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg";
-import { registerRoute } from "../utils/APIRoutes";
+import { loginRoute} from "../utils/APIRoutes";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,9 +11,8 @@ export const Login = () => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     username: "",
-    email: "",
     password: "",
-    confirmpassword: "",
+   
   });
 
   const toastOptions = {
@@ -27,11 +26,11 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      const { email, username, password } = values;
+      const {  username, password } = values;
       try {
-        const { data } = await axios.post(registerRoute, {
+        const { data } = await axios.post(loginRoute, {
           username,
-          email,
+      
           password,
         });
         if (data.status === false) {
@@ -48,25 +47,18 @@ export const Login = () => {
   };
 
   const handleValidation = () => {
-    const { password, confirmpassword, username, email } = values;
+    const { password, username } = values;
 
-    if (password !== confirmpassword) {
-      toast.error("Password and confirm password should be the same", toastOptions);
+    if (password ==="") {
+      toast.error("password is required", toastOptions);
       return false;
-    } else if (username.length < 3) {
-      toast.error("Username should be at least 3 characters long", toastOptions);
+    } else if (username.length === "") {
+      toast.error("Username and password is required", toastOptions);
       return false;
     } else if (/\d/.test(username)) {
       toast.error("Username should not contain numbers", toastOptions);
       return false;
-    } else if (email === "") {
-      toast.error("Email is required", toastOptions);
-      return false;
-    } else if (password.length < 8) {
-      toast.error("Password should be at least 8 characters long", toastOptions);
-      return false;
-    }
-
+    } 
     return true;
   };
 
@@ -87,29 +79,20 @@ export const Login = () => {
             name="username"
             placeholder="Username"
             onChange={handleChange}
+            min="3"
           />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-          />
+        
           <input
             type="password"
             name="password"
             placeholder="Password"
             onChange={handleChange}
           />
-          <input
-            type="password"
-            name="confirmpassword"
-            placeholder="Confirm Password"
-            onChange={handleChange}
-          />
+      
 
-          <button type="submit">Create User</button>
+          <button type="submit">Login</button>
           <span>
-            Already have an account? <Link to="/login">Login</Link>
+           Don't have an account? <Link to="/register">Register</Link>
           </span>
         </form>
       </FormContainer>
