@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -23,6 +23,13 @@ export const Register = () => {
     draggable: true,
     theme: "dark",
   };
+  useEffect(()=>{
+
+    if(localStorage.getItem('Chat-app-user')){
+      navigate('/')
+    }
+
+  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
