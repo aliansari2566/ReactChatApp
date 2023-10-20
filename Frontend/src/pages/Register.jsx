@@ -23,6 +23,7 @@ export const Register = () => {
     draggable: true,
     theme: "dark",
   };
+  
   useEffect(()=>{
 
     if(localStorage.getItem('Chat-app-user')){
