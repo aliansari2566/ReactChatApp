@@ -58,19 +58,10 @@ next(error)
 
 
 try {
-const {username ,  password} = req.body;
-const user = await User.findOne({username});
-if (!user) {
-  return res.json({msg:"incorrect username or password", status: false });
-   
-}
-const isPasswordValid = await bcrypt.compare(password,user.password)
-if (!isPasswordValid) {
-  return res.json({msg:"incorrect username or  password ", status: false });
-  delete user.password;
-}
-
-return res.json({status: true, user});
+const userId = req.parmas.id;
+const avatarImage = req.body.image;
+const userData = await
+ 
 } catch (error) {
 next(error)
 }
