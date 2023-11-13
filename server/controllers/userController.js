@@ -1,3 +1,4 @@
+const { response } = require("express");
 const User = require("../model/userModel")
 const bcrypt = require("bcrypt");
 
@@ -60,8 +61,12 @@ next(error)
 try {
 const userId = req.parmas.id;
 const avatarImage = req.body.image;
-const userData = await
+const userData = await user.findByIdAndUpdate(userId,{
+  isAvatarImageSet: true,
+  avatarImage,
+});
  
+return res.json({isSet:userData.isAvatarImageSet,image:userData.avatarImage})
 } catch (error) {
 next(error)
 }
