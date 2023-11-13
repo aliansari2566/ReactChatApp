@@ -46,7 +46,7 @@ export const SetAvatar = () => {
   //     navigate("/login");
   // }, []);
 
-  useEffect(()=>{
+  useEffect(async ()=>{
 
     if(localStorage.getItem('Chat-app-user')){ 
       navigate('/')
