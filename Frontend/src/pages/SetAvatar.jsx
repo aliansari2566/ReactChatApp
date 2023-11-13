@@ -46,13 +46,13 @@ export const SetAvatar = () => {
   //     navigate("/login");
   // }, []);
 
-  useEffect(async ()=>{
+  // useEffect( ()=>{
 
-    if(localStorage.getItem('Chat-app-user')){ 
-      navigate('/')
-    }
+  //   if(localStorage.getItem('Chat-app-user')){ 
+  //     navigate('/')
+  //   }
 
-  },[])
+  // },[])
 
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
