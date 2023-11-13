@@ -20,6 +20,15 @@ export const SetAvatar = () => {
     draggable: true,
     theme: "dark",
   };
+
+  useEffect( ()=>{
+
+    if(!localStorage.getItem('Chat-app-user')){ 
+      navigate('/login')
+    }
+
+  },[])
+
   useEffect(() => {
     async function fetchData() {
       const data = [];
@@ -46,13 +55,6 @@ export const SetAvatar = () => {
   //     navigate("/login");
   // }, []);
 
-  // useEffect( ()=>{
-
-  //   if(localStorage.getItem('Chat-app-user')){ 
-  //     navigate('/')
-  //   }
-
-  // },[])
 
   const setProfilePicture = async () => {
     if (selectedAvatar === undefined) {
