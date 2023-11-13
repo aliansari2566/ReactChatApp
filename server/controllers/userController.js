@@ -8,7 +8,6 @@ const bcrypt = require("bcrypt");
   const usernameCheck = await User.findOne({username});
   if (usernameCheck) {
     return res.json({msg:"Username already used", status: false });
-   
   }
   const emailCheck = await User.findOne({email});
   if (emailCheck) {
@@ -16,7 +15,7 @@ const bcrypt = require("bcrypt");
    
   }
   const hashedpassword = await  bcrypt.hash(password, 10)
- const  user = await User.create({
+ const  user = await User.create({ 
 
   username,
   email,
@@ -29,6 +28,7 @@ const bcrypt = require("bcrypt");
  }
   };
 
+  
   // API FOR lOGIN
  module.exports.login = async (req, res, next) => {
 

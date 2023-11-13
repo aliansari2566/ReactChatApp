@@ -22,6 +22,22 @@ export const SetAvatar = () => {
     draggable: true,
     theme: "dark",
   };
+
+  const setProfilePicture = async () => {};
+
+  useEffect(async () => {
+    const data = [];
+    for (let i = 0; i < 4; i++) {
+      const image = await axios.get(
+        `${api}/${Math.round(Math.random() * 1000)}`
+      );
+      const buffer = new Buffer(image.data);
+      data.push(buffer.toString("base64"));
+    }
+    setAvatars(data);
+    setIsLoading(false);
+  }, []);
+
   return (
 <>
 
@@ -32,7 +48,7 @@ export const SetAvatar = () => {
 </div>
 <div className="avatar">
 {
-   
+   avatars.map((avatar,index))
 }
 </div>
   
